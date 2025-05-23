@@ -26,7 +26,13 @@ theme: gaia
 
 # Warum nix?
 
-TODO: Devenv Probleme, reproducibility, ...
+1. Umgebungsverwaltung
+   - Keine nervigen globalen Umgebungen
+2. Reproduzierbarkeit
+   - "It works on my machine" ist keine Ausrede mehr
+   - Immer und überall dasselbe Ergebnis
+3. Verwaltbarkeit
+   - Weniger Probleme $\rightarrow$ weniger Aufwand :)
 
 ---
 

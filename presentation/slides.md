@@ -44,7 +44,14 @@ TODO: Grober Überblick, Beispielprojekt...
 
 # Sachen finden
 
-TODO: Noogle, nix.dev, package search, manual, wiki, ...
+- Nix ist leider nicht das am besten dokumentierte System :(
+- Source code lesen!
+- Zum Sachen nachschlagen:
+  - https://search.nixos.org/packages
+  - https://wiki.nixos.org
+  - https://noogle.dev
+  - https://nix.dev
+  - TODO: Sinnvolle manual URL
 
 ---
 
@@ -57,5 +64,3 @@ TODO: Flake-parts, treefmt
 # Selbstständiges Arbeiten >:)
 
 TODO: Übersicht über verschiedene Domains um ne Idee zu geben was Leute machen können
-
----

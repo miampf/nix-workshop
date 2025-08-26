@@ -14,16 +14,6 @@ theme: gaia
 
 ---
 
-# Worum wird's gehen
-
-1. Warum nix?
-2. Und wie überhaupt?
-3. Sachen finden
-4. Cooles Zeug
-5. Selbstständiges Arbeiten >:)
-
----
-
 # Warum nix?
 
 1. Umgebungsverwaltung
@@ -38,7 +28,123 @@ theme: gaia
 
 # Und wie überhaupt?
 
-TODO: Grober Überblick, Beispielprojekt...
+```nix
+  {stdenv, fetchurl, ...}: {}
+```
+
+---
+
+```nix
+{stdenv, fetchurl, ...}:
+
+stdenv.mkDerivation {}
+```
+
+---
+
+```nix
+{stdenv, fetchurl, ...}:
+
+stdenv.mkDerivation {
+    pname = "foobar";
+    version = "0.1.0";
+    src = fetchurl {
+      url = "...";
+      sha256 = "...";
+    };
+}
+```
+
+---
+
+# Yay, Schneeflocken
+
+- Flakes sind _theoretisch_ noch experimentell
+- haben `inputs` und `outputs`
+
+---
+
+```nix
+{
+  description = "A very basic flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  };
+
+  # ...
+}
+```
+
+---
+
+```nix
+{
+  description = "A very basic flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  };
+
+  outputs = { self, nixpkgs }:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
+  in
+  {
+    # ...
+  };
+}
+```
+
+---
+
+```nix
+{
+  description = "A very basic flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  };
+
+  outputs = { self, nixpkgs }:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
+  in
+  {
+
+    packages.${system}.hello = pkgs.hello;
+
+    packages.${system}.default = self.packages.${system}.hello;
+
+  };
+}
+```
+
+---
+
+# Audience Participation!
+
+- https://nixos.org/download/ oder `docker pull nixos/nix`
+- Für Windows-Leute: https://wiki.nixos.org/wiki/WSL
+
+---
+
+Flakes aktivieren:
+
+```sh
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+```
+
+---
+
+Dann repo clonen und zur Demo wechseln:
+
+```sh
+git clone https://github.com/miampf/nix-workshop
+cd nix-workshop/demo-program
+```
 
 ---
 
@@ -51,16 +157,11 @@ TODO: Grober Überblick, Beispielprojekt...
   - https://wiki.nixos.org
   - https://noogle.dev
   - https://nix.dev
-  - TODO: Sinnvolle manual URL
+  - https://nixos.org/manual/nixos/stable/
 
----
-
-# Cooles Zeug
-
-TODO: Flake-parts, treefmt
 
 ---
 
 # Selbstständiges Arbeiten >:)
 
-TODO: Übersicht über verschiedene Domains um ne Idee zu geben was Leute machen können
+![bg center](https://funnicons.com/cdn/shop/products/thumbupemojipreview01.jpg?v=1658746316)
